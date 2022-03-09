@@ -2,7 +2,7 @@ defmodule BexWeb.FuturesChannel do
   use BexWeb, :channel
 
   @impl true
-  def join("futures:lobby", payload, socket) do
+  def join("futures:lobby:" <> _usdt_coin, payload, socket) do
     if authorized?(payload) do
       {:ok, socket}
     else

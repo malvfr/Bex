@@ -15,9 +15,17 @@ defmodule Bex.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Bex.PubSub},
       # Start the Endpoint (http/https)
-      BexWeb.Endpoint
+      BexWeb.Endpoint,
       # Start a worker by calling: Bex.Worker.start_link(arg)
       # {Bex.Worker, arg}
+      {Task,
+       fn ->
+         :bex
+         |> Application.get_env(:default_crypto_symbols)
+         |> Enum.each(&Bex.Binance.Stream.DynamicStreamSupervisor.start_worker/1)
+       end},
+      {DynamicSupervisor,
+       strategy: :one_for_one, name: Bex.Binance.Stream.DynamicStreamSupervisor}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
