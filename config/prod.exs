@@ -62,4 +62,4 @@ config :bex, Bex.Repo,
   # Free tier db only allows 4 connections. Rolling deploys need pool_size*(n+1) connections where n is the number of app replicas.
   pool_size: 2
 
-config :bex, BexWeb.Endpoint, check_origin: ["https://sheltered-mountain-73226.herokuapp.com"]
+config :bex, BexWeb.Endpoint, check_origin: ["https://bexcrypt.herokuapp.com"]
