@@ -1,0 +1,7 @@
+{
+  "name": "bex",
+  "version": "1.0.0",
+  "scripts": {
+    "deploy": "cd .. && mix assets.deploy && rm -f _build/esbuild*"
+  }
+}
